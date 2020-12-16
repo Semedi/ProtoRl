@@ -7,8 +7,9 @@ project(
   LANGUAGES CXX
 )
 
-# Generate compile_commands.json for clang based tools
+# Include settings and utils
 include(cmake/Settings.cmake)
+include(cmake/Utils.cmake)
 
 # Initial message
 message(STATUS "Started CMake for ${PROJECT_NAME} v${PROJECT_VERSION}...\n")
@@ -20,3 +21,39 @@ endif()
 
 # Find all headers and implementation files
 include(cmake/SetHeadersSources.cmake)
+
+
+# Build executable with headers
+add_executable(${PROJECT_NAME} ${exe_sources})
+add_library(${PROJECT_NAME}_LIB ${headers} ${sources})
+
+# Verbose messages:
+verbose_message("Found the following header files:")
+verbose_message(${headers})
+verbose_message("Found the following source files:")
+verbose_message(${exe_sources})
+
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+
+target_include_directories(
+  ${PROJECT_NAME}
+  PUBLIC 
+    $<INSTALL_INTERFACE:include>    
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
+target_include_directories(
+  ${PROJECT_NAME}_LIB
+  PUBLIC 
+    $<INSTALL_INTERFACE:include>    
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
+
+# Dependencies
+
+
