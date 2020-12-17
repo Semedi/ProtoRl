@@ -28,7 +28,9 @@ include(cmake/SetHeadersSources.cmake)
 # Build executable with headers
 add_executable(${PROJECT_NAME} ${exe_sources})
 
-add_library(${ENGINE_LIB} SHARED ${engine_headers} ${engine_sources})
+if(${BUILD_ENGINE})
+  add_library(${ENGINE_LIB} SHARED ${engine_headers} ${engine_sources})
+endif()
 
 # Verbose messages:
 verbose_message("Found the following header files:")
@@ -47,14 +49,16 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_include_directories(
-  ${ENGINE_LIB}
-  PUBLIC 
-    $<INSTALL_INTERFACE:include>    
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
-)
+if(${BUILD_ENGINE})
+  target_include_directories(
+    ${ENGINE_LIB}
+    PUBLIC 
+      $<INSTALL_INTERFACE:include>    
+      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    PRIVATE
+      ${CMAKE_CURRENT_SOURCE_DIR}/src
+  )
+endif()
 
 
 # Dependencies
