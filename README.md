@@ -17,8 +17,12 @@ I recommend compiling the ProtoRl using cmake
 ```
 cd ${ProtoRl_SOURCE}
 mkdir build
-cmake [-DBUILD_ENGINE] ..
+cmake ..
 ```
+#### Options: 
+
+* BUILD_ENGINE: build the engine shared library.
+
 ## Roadmap
 
 ## Contributing
