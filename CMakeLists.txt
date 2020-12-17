@@ -7,6 +7,8 @@ project(
   LANGUAGES CXX
 )
 
+set(ENGINE_LIB "Roguengine")
+
 # Include settings and utils
 include(cmake/Settings.cmake)
 include(cmake/Utils.cmake)
@@ -25,7 +27,8 @@ include(cmake/SetHeadersSources.cmake)
 
 # Build executable with headers
 add_executable(${PROJECT_NAME} ${exe_sources})
-add_library(${PROJECT_NAME}_LIB ${headers} ${sources})
+
+add_library(${ENGINE_LIB} SHARED ${engine_headers} ${engine_sources})
 
 # Verbose messages:
 verbose_message("Found the following header files:")
@@ -45,7 +48,7 @@ target_include_directories(
 )
 
 target_include_directories(
-  ${PROJECT_NAME}_LIB
+  ${ENGINE_LIB}
   PUBLIC 
     $<INSTALL_INTERFACE:include>    
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
