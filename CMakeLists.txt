@@ -1,14 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-# Fetch dependencies
-# -----------------
 
-
-
-
-
-
-# ----------------
 
 # Project options
 project(
@@ -17,7 +9,10 @@ project(
   LANGUAGES CXX
 )
 
-set(ENGINE_LIB "Roguengine")
+set(PROJECT_LIB "Roguengine")
+
+# Fetch dependencies:
+find_package(SFML 2.5 REQUIRED COMPONENTS  graphics)
 
 # Include settings and utils
 include(cmake/Settings.cmake)
@@ -38,9 +33,11 @@ include(cmake/SetHeadersSources.cmake)
 # Build executable with headers
 add_executable(${PROJECT_NAME} ${exe_sources})
 
-if(${BUILD_ENGINE})
-  add_library(${ENGINE_LIB} SHARED ${engine_headers} ${engine_sources})
-endif()
+add_library(${PROJECT_LIB} 
+            EXCLUDE_FROM_ALL 
+            ${engine_headers} 
+            ${engine_sources}
+)
 
 # Verbose messages:
 verbose_message("Found the following header files:")
@@ -50,6 +47,7 @@ verbose_message(${exe_sources})
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
+# Include for executable
 target_include_directories(
   ${PROJECT_NAME}
   PUBLIC 
@@ -59,13 +57,16 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-if(${BUILD_ENGINE})
-  target_include_directories(
-    ${ENGINE_LIB}
-    PUBLIC 
-      $<INSTALL_INTERFACE:include>    
-      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    PRIVATE
-      ${CMAKE_CURRENT_SOURCE_DIR}/src
-  )
-endif()
+# Include for lib
+target_include_directories(
+  ${PROJECT_LIB}
+  PUBLIC 
+    $<INSTALL_INTERFACE:include>    
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
+target_link_libraries(${PROJECT_NAME} sfml-graphics)
+target_link_libraries(${PROJECT_LIB} sfml-graphics)
+
