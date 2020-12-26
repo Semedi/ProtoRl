@@ -23,7 +23,7 @@ $ cmake --build .
 
 If you are having problems installing conan dependencies:
 ```
-$ conan install --build=libtool --build=sfml --build=flac --build=libalsa --build=openal --build=vorbis ..
+$ conan install .. --build missing
 ```
 
 If you want to compile only Roguengine lib:
