@@ -12,19 +12,25 @@ Knowing this, the project can be separated into two parts:
 
 ## COMPILING (WIP)
 
-I recommend compiling the ProtoRl using cmake
+I recommend compiling the ProtoRl using cmake and conan:
 
 ```
-cd ${ProtoRl_SOURCE}
-mkdir build
-cmake ..
+$ mkdir build && cd build
+$ conan install ..
+$ cmake ..
+$ cmake --build .
 ```
-#### Options: 
 
-* BUILD_ENGINE: build the engine shared library.
+If you are having problems installing conan dependencies:
+```
+$ conan install --build=libtool --build=sfml --build=flac --build=libalsa --build=openal --build=vorbis ..
+```
 
+If you want to compile only Roguengine lib:
+
+```
+$ cmake --build . --target Roguengine
+```
 ## Roadmap
 
 ## Contributing
-
-
