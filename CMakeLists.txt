@@ -9,10 +9,12 @@ project(
   LANGUAGES CXX
 )
 
+set(CMAKE_CXX_STANDARD 17)
 set(PROJECT_LIB "Roguengine")
 
-# Fetch dependencies:
-find_package(SFML 2.5 REQUIRED COMPONENTS  graphics)
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
 
 # Include settings and utils
 include(cmake/Settings.cmake)
@@ -67,6 +69,5 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_link_libraries(${PROJECT_NAME} sfml-graphics)
-target_link_libraries(${PROJECT_LIB} sfml-graphics)
-
+target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
+target_link_libraries(${PROJECT_LIB} ${CONAN_LIBS})
