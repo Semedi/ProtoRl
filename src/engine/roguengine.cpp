@@ -1,5 +1,6 @@
 #include "engine/roguengine.hpp"
 
+
 int roguengine::add(int a, int b)
 { 
   return a + b; 
@@ -22,6 +23,9 @@ void roguengine::test()
                 window.close();
         }
     }
+}
 
- 
+void roguengine::update(entt::registry &registry)
+{
+  auto view = registry.view<const roguengine::pos, roguengine::vel>();
 }

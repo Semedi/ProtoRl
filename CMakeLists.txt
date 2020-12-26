@@ -67,6 +67,9 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_link_libraries(${PROJECT_NAME} sfml-graphics)
-target_link_libraries(${PROJECT_LIB} sfml-graphics)
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
+target_link_libraries(${PROJECT_NAME} sfml-graphics ${CONAN_LIBS})
+target_link_libraries(${PROJECT_LIB} sfml-graphics ${CONAN_LIBS})
 

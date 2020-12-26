@@ -9,5 +9,17 @@ int main()
 
   roguengine::test();
 
+  entt::registry registry;
+
+  for (auto i = 0u; i < 10u; ++i){
+    const auto entity = registry.create();
+    registry.emplace<roguengine::pos>(entity, i * 1.f, i * 1.f);
+
+    if (i%2 == 0)
+      registry.emplace<roguengine::vel>(entity, i * .1f, i * .1f);
+  }
+
+  roguengine::update(registry);
+
   return 0;
 }
