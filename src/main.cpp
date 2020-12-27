@@ -1,13 +1,14 @@
 #include <iostream>
 #include "tmp.hpp"
 #include "engine/roguengine.hpp"
+#include <cross.hpp>
 
 int main()
 {
   std::cout << tmp::add(1,2) << std::endl;
   std::cout << roguengine::add(1,2) << std::endl;
+  std::cout << cross::mul(2, 3) << std::endl;
 
-  roguengine::test();
 
   entt::registry registry;
 
@@ -20,6 +21,8 @@ int main()
   }
 
   roguengine::update(registry);
+  roguengine::test();
+
 
   return 0;
 }

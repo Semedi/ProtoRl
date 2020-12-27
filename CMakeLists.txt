@@ -49,12 +49,18 @@ verbose_message(${exe_sources})
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
+target_link_directories(
+  ${PROJECT_NAME}
+  PUBLIC
+    ${CMAKE_SOURCE_DIR}/cross/build/Debug
+)
 # Include for executable
 target_include_directories(
   ${PROJECT_NAME}
   PUBLIC 
     $<INSTALL_INTERFACE:include>    
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    ${CMAKE_SOURCE_DIR}/cross/include
   PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
@@ -69,5 +75,9 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
+target_link_libraries(
+  ${PROJECT_NAME} 
+  ${CONAN_LIBS}
+  Test
+)
 target_link_libraries(${PROJECT_LIB} ${CONAN_LIBS})

@@ -1,7 +1,7 @@
 #ifndef ROGUENGINE_H_
 #define ROGUENGINE_H_
 
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
 #include <entt/entt.hpp>
 
 namespace roguengine
