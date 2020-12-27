@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
 
-
-
 # Project options
 project(
   "ProtoRl"
@@ -15,13 +13,13 @@ set(PROJECT_LIB "Roguengine")
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-
 # Include settings and utils
 include(cmake/Settings.cmake)
 include(cmake/Utils.cmake)
 
 # Initial message
 message(STATUS "Started CMake for ${PROJECT_NAME} v${PROJECT_VERSION}...\n")
+
 
 # Prevent building in the source directory
 if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
@@ -30,7 +28,6 @@ endif()
 
 # Find all headers and implementation files
 include(cmake/SetHeadersSources.cmake)
-
 
 # Build executable with headers
 add_executable(${PROJECT_NAME} ${exe_sources})
@@ -49,11 +46,23 @@ verbose_message(${exe_sources})
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
+# check compiler for link directory
+# assumes that you are using same compiler from cross project
+if (CMAKE_CXX_COMPILER_ID STREQUAL GNU)
+  set(LINK_DIRECTORY ${CMAKE_SOURCE_DIR}/cross/build)
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL MSVC)
+  set(LINK_DIRECTORY ${CMAKE_SOURCE_DIR}/cross/build/Debug)
+endif()
+message(STATUS "Setting link directory for COMPILER_ID: ${CMAKE_CXX_COMPILER_ID}")
+
+
+# Check compiler
 target_link_directories(
   ${PROJECT_NAME}
   PUBLIC
-    ${CMAKE_SOURCE_DIR}/cross/build/Debug
+    ${LINK_DIRECTORY}
 )
+
 # Include for executable
 target_include_directories(
   ${PROJECT_NAME}
@@ -75,6 +84,7 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
+# Link libraries
 target_link_libraries(
   ${PROJECT_NAME} 
   ${CONAN_LIBS}
