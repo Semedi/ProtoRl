@@ -1,9 +1,17 @@
+#include "protorlconfig.hpp"
 #include <iostream>
 #include "tmp.hpp"
 #include "engine/roguengine.hpp"
 
+void show_version()
+{
+  std::cout << "ProtoRl " << ProtoRl_VERSION_MAJOR << "." << ProtoRl_VERSION_MINOR << "." << ProtoRl_VERSION_PATCH << std::endl;
+
+}
+
 int main()
 {
+  show_version();
   std::cout << tmp::add(1,2) << std::endl;
   std::cout << roguengine::add(1,2) << std::endl;
 

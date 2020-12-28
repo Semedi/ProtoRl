@@ -1,0 +1,8 @@
+#ifndef PROTORLCONFIG_H_
+#define PROTORLCONFIG_H_
+
+#define ProtoRl_VERSION_MAJOR @ProtoRl_VERSION_MAJOR@
+#define ProtoRl_VERSION_MINOR @ProtoRl_VERSION_MINOR@
+#define ProtoRl_VERSION_PATCH @ProtoRl_VERSION_PATCH@
+
+#endif

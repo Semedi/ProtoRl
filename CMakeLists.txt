@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
 
-
-
 # Project options
 project(
   "ProtoRl"
@@ -14,6 +12,12 @@ set(PROJECT_LIB "Roguengine")
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
+
+configure_file(
+    ${CMAKE_CURRENT_LIST_DIR}/cmake/protorlconfig.hpp.in
+    include/protorlconfig.hpp
+    @ONLY
+)
 
 
 # Include settings and utils
@@ -55,6 +59,7 @@ target_include_directories(
   PUBLIC 
     $<INSTALL_INTERFACE:include>    
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    ${PROJECT_BINARY_DIR}/include
   PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
@@ -65,9 +70,12 @@ target_include_directories(
   PUBLIC 
     $<INSTALL_INTERFACE:include>    
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    ${PROJECT_BINARY_DIR}/include
   PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
 target_link_libraries(${PROJECT_LIB} ${CONAN_LIBS})
+
+
