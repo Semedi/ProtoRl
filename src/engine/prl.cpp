@@ -1,5 +1,11 @@
 #include "engine/prl.hpp"
 
+#include <iostream>
+void prl::show_version()
+{
+  std::cout << "ProtoRl " << ProtoRl_VERSION_MAJOR << "." << ProtoRl_VERSION_MINOR << "." << ProtoRl_VERSION_PATCH << std::endl;
+
+}
 
 int prl::add(int a, int b)
 { 

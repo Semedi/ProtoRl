@@ -1,8 +1,9 @@
 #ifndef PRL_H_
 #define PRL_H_
 
-#include "SFML/Graphics.hpp"
 #include <entt/entt.hpp>
+#include "SFML/Graphics.hpp"
+#include "protorlconfig.hpp"
 
 namespace prl
 {
@@ -18,7 +19,9 @@ namespace prl
 
   int add(int, int);
   void test();
+  void show_version();
   void update(entt::registry &registry);
+
 }
 
 #endif  // PRL_H_H
