@@ -1,12 +1,12 @@
-#include "engine/roguengine.hpp"
+#include "engine/prl.hpp"
 
 
-int roguengine::add(int a, int b)
+int prl::add(int a, int b)
 { 
   return a + b; 
 }
 
-void roguengine::test()
+void prl::test()
 { 
     float WIDTH = 700;
     float HEIGHT = 700;
@@ -25,7 +25,7 @@ void roguengine::test()
     }
 }
 
-void roguengine::update(entt::registry &registry)
+void prl::update(entt::registry &registry)
 {
-  auto view = registry.view<const roguengine::pos, roguengine::vel>();
+  auto view = registry.view<const prl::pos, prl::vel>();
 }

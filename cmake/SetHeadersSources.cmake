@@ -1,9 +1,9 @@
 set(engine_sources
-    src/engine/roguengine.cpp
+    src/engine/prl.cpp
 )
 
 set(engine_headers
-    include/engine/roguengine.hpp
+    include/engine/prl.hpp
 )
 
 set(exe_sources

@@ -1,10 +1,10 @@
-#ifndef ROGUENGINE_H_
-#define ROGUENGINE_H_
+#ifndef PRL_H_
+#define PRL_H_
 
 #include "SFML/Graphics.hpp"
 #include <entt/entt.hpp>
 
-namespace roguengine
+namespace prl
 {
   struct pos {
     float x;
@@ -21,4 +21,4 @@ namespace roguengine
   void update(entt::registry &registry);
 }
 
-#endif  // ROGUENGINE_H_
+#endif  // PRL_H_H

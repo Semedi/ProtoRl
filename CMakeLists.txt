@@ -8,7 +8,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(PROJECT_LIB "Roguengine")
+set(PROJECT_LIB "Prl")
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
