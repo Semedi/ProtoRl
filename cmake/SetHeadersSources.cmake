@@ -1,9 +1,11 @@
 set(engine_sources
     src/engine/prl.cpp
+    src/engine/game.cpp
 )
 
 set(engine_headers
     include/engine/prl.hpp
+    include/engine/game.hpp
 )
 
 set(exe_sources

@@ -18,7 +18,6 @@ namespace prl
   };
 
   int add(int, int);
-  void test();
   void show_version();
   void update(entt::registry &registry);
 

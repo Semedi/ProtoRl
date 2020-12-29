@@ -1,7 +1,8 @@
 #include "protorlconfig.hpp"
-#include <iostream>
 #include "tmp.hpp"
 #include "engine/prl.hpp"
+#include "engine/game.hpp"
+#include <iostream>
 
 
 int main()
@@ -10,7 +11,8 @@ int main()
   std::cout << tmp::add(1,2) << std::endl;
   std::cout << prl::add(1,2) << std::endl;
 
-  prl::test();
+  auto game = prl::Game();
+  game.run();
 
   entt::registry registry;
 
